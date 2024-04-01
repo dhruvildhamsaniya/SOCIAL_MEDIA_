@@ -1,0 +1,30 @@
+.mymodal {
+    height: 600px !important;      
+    top: 65px !important;
+    margin-left: 300px !important;
+}
+
+.mdi-heart {
+    font-size: 30px;
+}
+
+  .mdi-heart-outline {
+    font-size: 30px;
+}
+
+.mb-5 {
+    margin-bottom: 5px !important;
+}
+
+.w-big{
+    width: 200px;
+}
+
+.bwhite-lg{
+    border: none;
+    background-color: transparent !important;
+}
+
+.comment-box{
+    display: none;
+}

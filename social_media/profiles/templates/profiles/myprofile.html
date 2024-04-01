@@ -1,0 +1,133 @@
+{% include 'base.html' %}
+<!-- <style>
+    .mymodal {
+        height: 600px !important;      
+        top: 65px !important;
+        margin-left: 300px !important;
+    }
+</style> -->
+<section class="section">
+    <div class="container">
+
+        <article class="media">
+            <div class="media-left">
+                <img style=" height:256px; width:256px" src={{profile.avatar.url}}>
+            </div>
+
+            <div class="media-content">
+
+                <nav class="level is-mobile">
+                    <div class="level-item has-text-centered">
+                        <div>
+                            <p class="heading">Posts</p>
+                            <p class="title">{{profile.get_posts_no}}</p>
+                        </div>
+                    </div>
+                    <div class="level-item has-text-centered">
+                        <div>
+                            <p class="heading">Following</p>
+                            <p class="title">{{profile.get_friends_no}}</p>
+                        </div>
+                    </div>
+                    <div class="level-item has-text-centered">
+                        <div>
+                            <p class="heading">Followers</p>
+                            <p class="title">{{profile.get_friends_no}}</p>
+                        </div>
+                    </div>
+
+                </nav>
+
+                <div class="content">
+                    <h1 class="title"><b>@{{profile.first_name}}</h1></b></h1>
+                    <h2 class="subtitle">{{profile.last_name}}</h2>
+                    <h3>
+                        {{profile.bio}}
+                        <br>
+                        {{profile.country}}
+                    </h3>
+                    <br>.
+
+                    <!--MODAL-->
+
+                    <div class="ui modal edit-profile-modal mymodal">
+                        <i class="close icon"></i>
+                        <div class="header">
+                            Update your Profile
+                        </div>
+                        <div class="image content">
+                            <div class="ui medium image">
+                                <img src="{{profile.avatar.url}}">
+                            </div>
+                            <div class="discription" style="margin-left: 50px;">
+                                <form action="" method="POST" class="ui form" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    {{form.as_p}}
+                            </div>
+                        </div>
+                        <div class="actions">
+                           <center> <button type="submit" class="ui positive button">Update
+                               &nbsp; <i class="checkmark icon"></i>
+                            </button>
+                        </center>
+                            </form>
+                        </div>
+                    </div>
+                    {% if confirm %}
+                    <div class="ui green message">Your Profile Has Been Updated</div>
+                    {% endif %}
+                
+
+                    <button id="edit-profile-btn"
+                        style="background-color: black; color: white;  width: 300px;height: 40px;margin-left: 400px;"
+                        class="ui secondary button ">Edit Profile</button>
+
+                </div>
+
+            </div>
+        </article>
+        <br><br><br><br><br><br>
+
+        <div class="ui modal share-modal">
+            <div class="five wide coloumn">
+                <form action="" method="POST" class="ui form" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{p_form.as_p}}
+                    <button type="submit" class="ui button positive">Share</button>
+
+                </form>
+            </div>
+
+        </div>
+
+        <center> <button id="upload-post-btn"  
+                style="background-color: black; color: white;  width: 200px;height: 30px;">
+                <span class="mdi mdi-plus-box"></span>&nbsp;
+                Upload Post
+            </button>
+        </center>
+        <br>
+        <hr>
+        <div class="columns is-mobile is-multiline is-centered">
+
+            {% for obj in qs %}
+            <div class="column is-one-quarter">
+                <div class="box">
+
+                    <p>{{obj.content}}</p>
+                    <figure class="image is-256x256">
+                        <img style=" height:256px; width:256px" src={{obj.image.url}}>
+                    </figure>
+
+                </div>
+            </div>
+            {% endfor %}
+
+
+        </div>
+    </div>
+</section>
+
+</body>
+
+</html>
